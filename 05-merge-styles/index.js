@@ -3,16 +3,15 @@ const path = require('path');
 
 const stylePath = path.join(__dirname, 'styles')
 const bundleFile = path.join(__dirname, 'project-dist', 'bundle.css')
-
    
 
-    fs.writeFile(
-        bundleFile,
-        '',
-        (err) => {
-            if (err) throw err;        
-        }
-    );
+fs.writeFile(
+    bundleFile,
+    '',
+    (err) => {
+        if (err) throw err;        
+    }
+);
 
 fs.readdir(stylePath, (err, files) => {
     if (err) console.log(err)
