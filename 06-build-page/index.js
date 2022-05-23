@@ -77,8 +77,7 @@ async function clearDir(dir) {
             files.forEach(file => {
                 if (file.isDirectory()) {
                     const newDir = path.join(dir, file.name);
-                    clearDir(newDir)
-                    //fs.promises.rmdir(newDir)                       
+                    clearDir(newDir)                                           
                 } else if (file.isFile()) {
                     const fileForDel = path.join(dir, file.name);
                     fs.promises.unlink(fileForDel)
@@ -93,9 +92,9 @@ clearDir(assetsProjectDir)
 copyDir(assetsDir, assetsProjectDir)
 
 
-/*  */
+/* Create template */
 
-async function assetsCopy() {
+async function createTemplate() {
     let result = await fs.promises.readFile(templateFile, 'utf-8');
 
     const parts = await fs.promises.readdir(componentsDir, {withFileTypes: true})
@@ -117,4 +116,4 @@ async function assetsCopy() {
     )
 }
 
-assetsCopy()
+createTemplate()
