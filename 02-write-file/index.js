@@ -3,15 +3,12 @@ const path = require('path');
 
 const file = path.join(__dirname, 'text.txt')
 
-fs.writeFile(
+fs.promises.writeFile(
     file,
     '',
-    (err) => {
-        if (err) throw err;        
-    }
 );
 
-process.stdout.write('Приглашение на ввод текста\n>')
+process.stdout.write('Введите что-нибудь:\n>')
 
 process.stdin.on('data', data => {
     const dataStringified = data.toString();
@@ -27,5 +24,8 @@ process.stdin.on('data', data => {
 );
 
 
-process.on('exit', () => process.stdout.write('Прощальная фраза'));
-process.on('SIGINT', () => process.exit());
+process.on('exit', () => process.stdout.write('Прощайте! Все что вводили ищите в text.txt'));
+process.on('SIGINT', () =>{
+    process.stdout.write('\n');
+    process.exit();
+    });
